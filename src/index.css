@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Newsreader", serif;
+  --font-sans: "Manrope", sans-serif;
+
+  --color-primary: #163428;
+  --color-secondary: #7c5730;
+  --color-accent: #eebd8e;
+  --color-surface-low: #fbf9f8;
+  --color-surface-high: #f0eded;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-surface-low text-primary font-sans;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-primary;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.faq-accordion[open] .faq-icon {
+  transform: rotate(180deg);
+}

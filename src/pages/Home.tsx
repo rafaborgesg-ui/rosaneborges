@@ -1,0 +1,131 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { motion } from 'motion/react';
+
+export default function Home() {
+  return (
+    <div className="pt-20">
+      {/* Portfolio Carousel Simulation */}
+      <section className="bg-white py-10 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="aspect-[21/9] rounded-[2rem] overflow-hidden relative group">
+            <img 
+              src="https://lh3.googleusercontent.com/aida/ADBb0uiaBmILFB-BysvJyMy2ydZFI7yDG9Bhh50qPIIk37kPOTk1Pf821KJ6yqN-CxT6dxmjw9IuIkiOLc0miWdTe-SJ537aBXvVXiNXrj2ERPzMMrZxyPyqbe-7uiQdN7Cxa9o2NdPx7ZAb4MKoDe2YEgLpq3ikjnKTXfiyygwnfBVIcKPLe8C_lcjs4Z6hygLzs9hD29dCq9O7j7QDyfZch0ZPNrm12AFl-Vrb_Fu4cQdathR0A5ZKdDGYDXl_mX-j4Lse2C1rC1WUmg" 
+              alt="Projeto em Destaque"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-10 left-10 text-white">
+              <p className="text-[10px] uppercase font-bold tracking-[0.3em] mb-2">Portfólio Residencial</p>
+              <h1 className="text-4xl font-display italic">Jardim Vertical Denso</h1>
+            </div>
+          </div>
+          <div className="flex justify-center gap-2 mt-8">
+            <div className="w-2 h-2 rounded-full bg-primary" />
+            <div className="w-2 h-2 rounded-full bg-gray-200" />
+            <div className="w-2 h-2 rounded-full bg-gray-200" />
+          </div>
+        </div>
+      </section>
+
+      {/* Dra. Rosane Authority Profile */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+           <div className="w-full md:w-1/2 relative">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/5] mask-asymmetric">
+              <img 
+                src="https://lh3.googleusercontent.com/aida/ADBb0ug_AP5fC36sjt5bRKzseIc7AbvVa2OITKvy2HiEjBT4wFsd-LXpYMmo6R-SxlhiBZqJMlDFaov4x6SCky3OvL9wY0uIkgK5ESbhRbuly3_r5OSWVcP8fMS893SFzzw9W4cMVztFRaw_Xzba-cuygUforxrEFaq4ltncWwamsa1HamO6RQghAlajzxFTeTLsRGz5-oJafgYhVBKdTW56-vD9uWw_Bs4hxGdoqQO0NcpwfGVI7vbmJydaUYOZrOuThQuh1sou3RvT" 
+                alt="Dra. Rosane"
+                className="w-full h-full object-cover scale-110"
+              />
+            </div>
+            <div className="absolute -bottom-6 right-0 bg-primary text-white p-6 rounded-2xl shadow-xl">
+              <p className="text-[10px] uppercase tracking-widest opacity-80">DRA. ROSANE BORGES</p>
+              <p className="font-display italic text-2xl">PhD Excellence</p>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 space-y-8">
+            <span className="text-secondary font-bold text-xs uppercase tracking-widest">Fundadora & Diretora Criativa</span>
+            <h2 className="text-5xl md:text-6xl font-display leading-[0.9]">Dra. Rosane Borges</h2>
+            <p className="text-xl font-display italic text-gray-500">"Onde a ciência da ecologia urbana encontra a sofisticação do design exclusivo."</p>
+            <p className="text-gray-600 leading-relaxed">Com PhD em Arquitetura Paisagística e uma trajetória de mais de 500 projetos autorais, Dra. Rosane redefine o conceito de luxo sustentável.</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-surface-low p-6 rounded-2xl text-center">
+                <p className="text-3xl font-display text-primary">500+</p>
+                <p className="text-[9px] uppercase font-bold tracking-widest text-secondary">Projetos Autorais</p>
+              </div>
+              <div className="bg-surface-low p-6 rounded-2xl text-center">
+                <p className="text-3xl font-display text-primary">PhD</p>
+                <p className="text-[9px] uppercase font-bold tracking-widest text-secondary">Expertise Técnica</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise / Services */}
+      <section className="py-24 bg-surface-low">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-20">
+            <span className="text-primary font-bold text-[10px] uppercase tracking-[0.3em]">Bespoke Services</span>
+            <h2 className="text-4xl font-display mt-4">Nossa Expertise</h2>
+            <p className="text-gray-500 font-display italic text-xl mt-2">Soluções planejadas para proprietários que valorizam o detalhe.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-12">
+            {[
+              { id: '01', title: 'Projeto de Paisagismo', icon: 'landscape', desc: 'Conceito completo em 3D, do estudo preliminar ao executivo.' },
+              { id: '02', title: 'Consultoria Técnica', icon: 'menu_book', desc: 'Escolha de espécies e melhorias pontuais no seu ambiente.' },
+              { id: '03', title: 'Implantação de Paisagismo', icon: 'verified', desc: 'Gestão total da execução, garantindo rigor e sofisticação.' }
+            ].map(item => (
+              <div key={item.id} className="space-y-6">
+                <div className="flex items-center gap-4">
+                   <span className="text-3xl font-display text-gray-300 italic">{item.id}</span>
+                   <div className="w-12 h-12 bg-white flex items-center justify-center border border-gray-100 rounded-xl">
+                      <span className="material-symbols-outlined text-primary">{item.icon}</span>
+                   </div>
+                </div>
+                <h3 className="text-2xl font-display">{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                <button className="text-[10px] font-bold uppercase tracking-widest border-b border-primary/20 pb-1">Ver Detalhes</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Grid */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl font-display mb-12">Portfólio Selecionado</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+             {["Natural", "Preservado", "Artificial", "Musgo"].map((p, i) => (
+               <div key={i} className="aspect-square rounded-3xl overflow-hidden relative group">
+                  <img 
+                    src={`https://lh3.googleusercontent.com/aida/ADBb0ugYdpa-dtlauELaJsewHWxU1zLj-LzbsScFtGjNIp2e4S2a122-xYxoaUgnTh5B9carsJ6S14EOwFfHm3RRLnoRGX7HfQ38y-h9GLQZYSjvCU6QQrqgHcb0y-M9BIm7hocVugM6fQFTJ_4VKkU-LVWfbSxAXAUFFBzCc4cal7zRb7oWMWqmFscFLI6wyqcuDErTc6D2E0dr7JvBKMMzgjKeYdmnU-lidWiRfSbqP9Z0q65yipQwBUomr9CFyk3cJ3GfFjT2itKxgA`} 
+                    alt={p}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <p className="text-white font-display italic text-xl">Jardim {p}</p>
+                  </div>
+               </div>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-32 bg-primary text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-white text-5xl font-display mb-8">Inicie sua Transformação</h2>
+          <p className="text-white/60 mb-12">Consultorias exclusivas com a Dra. Rosane Borges este semestre.</p>
+          <button className="bg-white text-primary px-12 py-5 rounded-full text-xs font-bold uppercase tracking-widest shadow-2xl">
+            Solicitar Orçamento
+          </button>
+        </div>
+      </section>
+    </div>
+  );
+}
