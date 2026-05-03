@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && 
+             request.auth.token.email == "rafaborgesg@gmail.com" && 
+             request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Homepage Configuration
+    match /configs/homepage {
+      allow get: if true;
+      allow write: if isAdmin();
+      
+      function isValidHomepageConfig(data) {
+        return data.keys().hasAll(['heroSlides', 'highlights', 'about', 'services', 'cta', 'branding']) &&
+               data.heroSlides is list && data.heroSlides.size() <= 10 &&
+               data.highlights is list && data.highlights.size() <= 10 &&
+               data.services is list && data.services.size() <= 6 &&
+               data.about.keys().hasAll(['image', 'title', 'quote', 'description', 'tagline']) &&
+               data.cta.keys().hasAll(['title', 'subtitle']) &&
+               data.branding.keys().hasAll(['logo']);
+      }
+
+      allow create: if isAdmin() && isValidHomepageConfig(request.resource.data);
+      allow update: if isAdmin() && isValidHomepageConfig(request.resource.data);
+    }
+  }
+}

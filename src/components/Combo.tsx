@@ -46,9 +46,12 @@ export default function Combo() {
                 </div>
               </div>
 
-              <button className="bg-accent text-primary px-12 py-6 rounded-full text-sm font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">
+              <a 
+                href="https://pay.kiwify.com.br/TbN4teT"
+                className="bg-accent text-primary px-12 py-6 rounded-full text-sm font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all uppercase tracking-widest inline-block"
+              >
                 Garantir Meu Combo Agora
-              </button>
+              </a>
               <p className="mt-8 text-[10px] text-white/40 font-bold uppercase tracking-[0.2em]">Pagamento seguro via Kiwify • Acesso imediato</p>
             </motion.div>
 

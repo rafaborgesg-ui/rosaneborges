@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "HomepageConfig": {
+      "title": "Homepage Configuration",
+      "description": "Configuration for the homepage hero, about section and highlights",
+      "type": "object",
+      "properties": {
+        "heroSlides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": { "type": "string" },
+              "title": { "type": "string" },
+              "subtitle": { "type": "string" }
+            },
+            "required": ["image", "title", "subtitle"]
+          }
+        },
+        "about": {
+          "type": "object",
+          "properties": {
+            "image": { "type": "string" },
+            "title": { "type": "string" },
+            "quote": { "type": "string" },
+            "description": { "type": "string" },
+            "tagline": { "type": "string" }
+          },
+          "required": ["image", "title", "quote", "description", "tagline"]
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "icon": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["id", "title", "icon", "description"]
+          }
+        },
+        "cta": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "subtitle": { "type": "string" }
+          },
+          "required": ["title", "subtitle"]
+        },
+        "branding": {
+          "type": "object",
+          "properties": {
+            "logo": { "type": "string" }
+          },
+          "required": ["logo"]
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "image": { "type": "string" }
+            },
+            "required": ["title", "image"]
+          }
+        }
+      },
+      "required": ["hero", "highlights"]
+    }
+  },
+  "firestore": {
+    "configs/homepage": {
+      "schema": "HomepageConfig",
+      "description": "Store for homepage content"
+    }
+  }
+}

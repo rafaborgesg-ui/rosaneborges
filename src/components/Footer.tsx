@@ -3,9 +3,27 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { db, doc, onSnapshot } from '../lib/firebase';
+
+const DEFAULT_LOGO = "https://lh3.googleusercontent.com/aida/ADBb0uhUeEUjIUKFWpijfRCr7aOBVvUcY6yBKnTqx2HP2oDZVowK-tiB48F4NIe_dshhSFtUIeBrrJMHo9aqdjIy0_xepRjCu1tgd8c1Pw6gb44Tzk46m6geGvIXckkSvm-kTKvYnoXP04x8CYzUWW_7DAXYB_MUPWIbLxaBAwmulzLzbRzSY_PS52HC8_H54d-ULRc0gEzeMUmC9huDFqYR5x6uJXIzExTbY6qq89N5VgwXCPzjNYl424n7Vkub1XnE6whBc1idspBS";
 
 export default function Footer() {
+  const [logo, setLogo] = useState(DEFAULT_LOGO);
+
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'configs', 'homepage'), (snap) => {
+      if (snap.exists()) {
+        const data = snap.data();
+        if (data.branding?.logo) {
+          setLogo(data.branding.logo);
+        }
+      }
+    });
+    return () => unsub();
+  }, []);
+
   return (
     <footer className="bg-primary text-white py-20 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -15,7 +33,7 @@ export default function Footer() {
             <img 
               alt="Rosane Borges Paisagismo" 
               className="h-16 w-auto object-contain" 
-              src="https://lh3.googleusercontent.com/aida/ADBb0uhUeEUjIUKFWpijfRCr7aOBVvUcY6yBKnTqx2HP2oDZVowK-tiB48F4NIe_dshhSFtUIeBrrJMHo9aqdjIy0_xepRjCu1tgd8c1Pw6gb44Tzk46m6geGvIXckkSvm-kTKvYnoXP04x8CYzUWW_7DAXYB_MUPWIbLxaBAwmulzLzbRzSY_PS52HC8_H54d-ULRc0gEzeMUmC9huDFqYR5x6uJXIzExTbY6qq89N5VgwXCPzjNYl424n7Vkub1XnE6whBc1idspBS" 
+              src={logo} 
             />
             <p className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] font-sans">
               Excelência Técnica em Paisagismo
@@ -35,6 +53,7 @@ export default function Footer() {
               <Link to="/produtos" className="text-sm text-white/70 hover:text-white transition-colors">Produtos</Link>
               <Link to="/produtos#faq" className="text-sm text-white/70 hover:text-white transition-colors">FAQ</Link>
               <Link to="/sistema" className="text-sm text-white/70 hover:text-white transition-colors">Sistema</Link>
+              <Link to="/contato" className="text-sm text-white/70 hover:text-white transition-colors">Contato</Link>
             </div>
           </div>
 

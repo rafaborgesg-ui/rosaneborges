@@ -6,10 +6,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router-dom';
+import { db, doc, onSnapshot } from '../lib/firebase';
+
+const DEFAULT_LOGO = "https://lh3.googleusercontent.com/aida/ADBb0uhUeEUjIUKFWpijfRCr7aOBVvUcY6yBKnTqx2HP2oDZVowK-tiB48F4NIe_dshhSFtUIeBrrJMHo9aqdjIy0_xepRjCu1tgd8c1Pw6gb44Tzk46m6geGvIXckkSvm-kTKvYnoXP04x8CYzUWW_7DAXYB_MUPWIbLxaBAwmulzLzbRzSY_PS52HC8_H54d-ULRc0gEzeMUmC9huDFqYR5x6uJXIzExTbY6qq89N5VgwXCPzjNYl424n7Vkub1XnE6whBc1idspBS";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [logo, setLogo] = useState(DEFAULT_LOGO);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,11 +22,24 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const unsub = onSnapshot(doc(db, 'configs', 'homepage'), (snap) => {
+      if (snap.exists()) {
+        const data = snap.data();
+        if (data.branding?.logo) {
+          setLogo(data.branding.logo);
+        }
+      }
+    });
+    return () => unsub();
+  }, []);
+
   const menuItems = [
     { name: 'Início', href: '/' },
     { name: 'Portfólio', href: '/#portfolio' },
     { name: 'Produtos', href: '/produtos' },
     { name: 'Sistema', href: '/sistema' },
+    { name: 'Contato', href: '/contato' },
   ];
 
   return (
@@ -36,7 +53,7 @@ export default function Header() {
           <img 
             alt="Rosane Borges Paisagismo" 
             className="h-12 w-auto object-contain" 
-            src="https://lh3.googleusercontent.com/aida/ADBb0uhUeEUjIUKFWpijfRCr7aOBVvUcY6yBKnTqx2HP2oDZVowK-tiB48F4NIe_dshhSFtUIeBrrJMHo9aqdjIy0_xepRjCu1tgd8c1Pw6gb44Tzk46m6geGvIXckkSvm-kTKvYnoXP04x8CYzUWW_7DAXYB_MUPWIbLxaBAwmulzLzbRzSY_PS52HC8_H54d-ULRc0gEzeMUmC9huDFqYR5x6uJXIzExTbY6qq89N5VgwXCPzjNYl424n7Vkub1XnE6whBc1idspBS" 
+            src={logo} 
           />
         </Link>
 
@@ -56,9 +73,12 @@ export default function Header() {
               </Link>
             );
           })}
-          <button className="bg-primary text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+          <Link 
+            to="/contato"
+            className="bg-primary text-white px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
+          >
             Agendar Consultoria
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -91,9 +111,13 @@ export default function Header() {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-primary text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest">
+            <Link 
+              to="/contato"
+              onClick={() => setIsOpen(false)}
+              className="bg-primary text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest text-center"
+            >
               Agendar Consultoria
-            </button>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

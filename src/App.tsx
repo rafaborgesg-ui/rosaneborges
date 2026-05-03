@@ -10,6 +10,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Produtos from './pages/Produtos';
 import Sistema from './pages/Sistema';
+import Contato from './pages/Contato';
+import Admin from './pages/Admin';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -40,10 +43,13 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/sistema" element={<Sistema />} />
+            <Route path="/contato" element={<Contato />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />
       </div>
+      <WhatsAppButton />
     </Router>
   );
 }
