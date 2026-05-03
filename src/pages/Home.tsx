@@ -8,25 +8,31 @@ import { motion } from 'motion/react';
 export default function Home() {
   return (
     <div className="pt-20">
-      {/* Portfolio Carousel Simulation */}
-      <section className="bg-white py-10 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="aspect-[21/9] rounded-[2rem] overflow-hidden relative group">
-            <img 
-              src="https://lh3.googleusercontent.com/aida/ADBb0uiaBmILFB-BysvJyMy2ydZFI7yDG9Bhh50qPIIk37kPOTk1Pf821KJ6yqN-CxT6dxmjw9IuIkiOLc0miWdTe-SJ537aBXvVXiNXrj2ERPzMMrZxyPyqbe-7uiQdN7Cxa9o2NdPx7ZAb4MKoDe2YEgLpq3ikjnKTXfiyygwnfBVIcKPLe8C_lcjs4Z6hygLzs9hD29dCq9O7j7QDyfZch0ZPNrm12AFl-Vrb_Fu4cQdathR0A5ZKdDGYDXl_mX-j4Lse2C1rC1WUmg" 
-              alt="Projeto em Destaque"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute bottom-10 left-10 text-white">
-              <p className="text-[10px] uppercase font-bold tracking-[0.3em] mb-2">Portfólio Residencial</p>
-              <h1 className="text-4xl font-display italic">Jardim Vertical Denso</h1>
+      {/* Portfolio Full-Width Banner */}
+      <section className="bg-white w-full overflow-hidden">
+        <div className="w-full relative h-[400px] md:h-[600px] lg:h-[750px] group">
+          <img 
+            src="https://lh3.googleusercontent.com/aida/ADBb0uiaBmILFB-BysvJyMy2ydZFI7yDG9Bhh50qPIIk37kPOTk1Pf821KJ6yqN-CxT6dxmjw9IuIkiOLc0miWdTe-SJ537aBXvVXiNXrj2ERPzMMrZxyPyqbe-7uiQdN7Cxa9o2NdPx7ZAb4MKoDe2YEgLpq3ikjnKTXfiyygwnfBVIcKPLe8C_lcjs4Z6hygLzs9hD29dCq9O7j7QDyfZch0ZPNrm12AFl-Vrb_Fu4cQdathR0A5ZKdDGYDXl_mX-j4Lse2C1rC1WUmg" 
+            alt="Projeto em Destaque"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end pb-12 md:pb-24">
+            <div className="max-w-7xl mx-auto w-full px-6 text-white">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <p className="text-[10px] md:text-xs uppercase font-bold tracking-[0.4em] mb-4">Portfólio Residencial</p>
+                <h1 className="text-5xl md:text-8xl font-display italic leading-none">Jardim Vertical Denso</h1>
+              </motion.div>
             </div>
           </div>
-          <div className="flex justify-center gap-2 mt-8">
-            <div className="w-2 h-2 rounded-full bg-primary" />
-            <div className="w-2 h-2 rounded-full bg-gray-200" />
-            <div className="w-2 h-2 rounded-full bg-gray-200" />
-          </div>
+        </div>
+        <div className="flex justify-center gap-2 py-8">
+          <div className="w-2 h-2 rounded-full bg-primary" />
+          <div className="w-2 h-2 rounded-full bg-gray-200" />
+          <div className="w-2 h-2 rounded-full bg-gray-200" />
         </div>
       </section>
 
