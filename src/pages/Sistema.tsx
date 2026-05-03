@@ -18,8 +18,13 @@ export default function Sistema() {
               A primeira plataforma de gestão financeira e operacional pensada exclusivamente para arquitetos e paisagistas. Organize fluxos, controle obras e prospere.
             </p>
             <div className="flex gap-4">
-               <button className="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest shadow-xl">Começar Agora</button>
-               <button className="border border-gray-200 px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest">Ver Demo</button>
+               <motion.button 
+                 whileHover={{ scale: 1.05, backgroundColor: '#1d4434' }}
+                 whileTap={{ scale: 0.95 }}
+                 className="bg-primary text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest shadow-xl transition-shadow hover:shadow-2xl"
+               >
+                 Já Tenho Conta
+               </motion.button>
             </div>
             <p className="text-xs text-gray-400">+2.000 profissionais já utilizam nosso sistema</p>
           </div>
@@ -66,12 +71,25 @@ export default function Sistema() {
       {/* Pricing / Planos */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-4xl font-display mb-4">Escolha o plano ideal</h2>
-            <p className="text-gray-500 mb-16">Experimente grátis por 7 dias. Cancele quando quiser.</p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-display mb-4">Escolha o plano ideal</h2>
+              <p className="text-gray-500 mb-16">Experimente grátis por 7 dias. Cancele quando quiser.</p>
+            </motion.div>
             
             <div className="grid md:grid-cols-3 gap-8 items-stretch">
                 {/* Basic */}
-                <div className="border border-gray-100 p-10 rounded-[2.5rem] bg-surface-low space-y-8 flex flex-col">
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="border border-gray-100 p-10 rounded-[2.5rem] bg-surface-low space-y-8 flex flex-col"
+                >
                   <div>
                     <h3 className="text-2xl font-display">Básico</h3>
                     <p className="text-4xl font-display mt-4 text-primary">R$ 39 <span className="text-lg text-gray-400">/mês</span></p>
@@ -81,11 +99,17 @@ export default function Sistema() {
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> 8 Projetos Ativos</li>
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> Suporte por E-mail</li>
                   </ul>
-                  <button className="w-full py-4 border border-primary text-primary rounded-full font-bold text-[10px] uppercase tracking-widest">Testar 7 Dias</button>
-                </div>
+                  <button className="w-full py-4 border border-primary text-primary rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-colors">Testar 7 Dias</button>
+                </motion.div>
 
                 {/* Pro */}
-                <div className="bg-primary p-10 rounded-[2.5rem] text-white space-y-8 scale-105 shadow-2xl flex flex-col">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1.05 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="bg-primary p-10 rounded-[2.5rem] text-white space-y-8 shadow-2xl flex flex-col z-10"
+                >
                   <div>
                     <span className="bg-accent/20 text-accent px-4 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest mb-4 inline-block">MAIS POPULAR</span>
                     <h3 className="text-2xl font-display">PRO</h3>
@@ -97,11 +121,17 @@ export default function Sistema() {
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> Combo Materiais Incluso</li>
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> Suporte WhatsApp</li>
                   </ul>
-                  <button className="w-full py-4 bg-accent text-primary rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl">Assinar Agora</button>
-                </div>
+                  <button className="w-full py-4 bg-accent text-primary rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Assinar Agora</button>
+                </motion.div>
 
                 {/* Premium */}
-                <div className="border border-gray-100 p-10 rounded-[2.5rem] bg-surface-low space-y-8 flex flex-col">
+                <motion.div 
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="border border-gray-100 p-10 rounded-[2.5rem] bg-surface-low space-y-8 flex flex-col"
+                >
                   <div>
                     <h3 className="text-2xl font-display">Premium</h3>
                     <p className="text-4xl font-display mt-4 text-primary">R$ 89 <span className="text-lg text-gray-400">/mês</span></p>
@@ -111,8 +141,8 @@ export default function Sistema() {
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> Gestão de Obras Pro</li>
                     <li className="flex items-center gap-2"><span className="material-symbols-outlined text-xs">check</span> Suporte Prioritário</li>
                   </ul>
-                  <button className="w-full py-4 border border-primary text-primary rounded-full font-bold text-[10px] uppercase tracking-widest">Testar 7 Dias</button>
-                </div>
+                  <button className="w-full py-4 border border-primary text-primary rounded-full font-bold text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-colors">Testar 7 Dias</button>
+                </motion.div>
             </div>
         </div>
       </section>
